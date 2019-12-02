@@ -6,7 +6,8 @@ import paho.mqtt.client as mqtt #import module
 import time
 import sys
 #----------------------------------------------------------------------------------------
-bridge_address="mosquitto.1544-d-iot-data-platform-1544.svc.cluster.local:1883"
+#bridge_address="mosquitto.1544-d-iot-data-platform-1544.svc.cluster.local:1883"
+bridge_address="test.mosquitto.org";
 #-----------------------------------------------------------------------------------------
 
 # Callback function per il client BRIDGE
@@ -37,7 +38,8 @@ i = 1
 while i < 30:
 	print(i)
 	i += 1
-	newTopic="devices/smartpipe/messages/events/dev="+i;
-	message = "new message #"+i
-	ret= bridgeclient.publish(newTopic,str(message.decode("utf-8")))
-	print("messaggio inviato con risposta"+ret)
+	newTopic="devices/smartpipe/messages/events/dev="+str(i);
+	message = "new message #" + str(i)
+	print("Messaggio che invio: " + message)
+	ret= bridgeclient.publish(newTopic,str(message))
+	print("messaggio inviato con risposta"+str(ret))
